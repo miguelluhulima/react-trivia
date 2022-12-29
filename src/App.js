@@ -6,6 +6,7 @@ import Start from "./components/Start"
 export default function App() {
     return (
         <main>
+            {/* <Start /> */}
             <Quiz />
         </main>
     )

@@ -58,6 +58,7 @@ main {
     border: 2px solid rgb(239, 75, 75);
     border-radius: 7px;
     padding:30px;
+    background-color: #4a4a4a;
 }
 
 .quiz--submit {
@@ -78,35 +79,36 @@ main {
     box-shadow: inset 2px 3px 5px black;
 }
 
+.card {
+    margin-bottom: 30px;
+}
+
 .card--answers {
     display: flex;
     flex-direction: row;
     gap: 30px;
+    align-items: center;
 }
 
-.answer {
+.answer--button {
+    height: 50px;
     background-color: #343434;
-    border: 2px solid rgb(239, 75, 75);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
+    color: white;
+    padding: 10px;
+    border: 0;
+    border-radius: 6px;
     box-shadow: 0 3px 5px black;
+    cursor: pointer;
+    font-family: Karla, sans-serif;
     transition-duration: 0.4s;
 }
 
-.answer:hover {
+.answer--button:hover {
     background-color: rgb(239, 75, 75);
-    border: 2px solid rgb(239, 75, 75);
-    cursor: pointer;
-}
-
-.answer--text {
-    padding: 10px;
-    color: white;
-    margin: 0;
-}
-
-.answer--text:hover {
     color: black;
+}
+
+.answer--button:active {
+    border: 0;
+    box-shadow: inset 2px 3px 5px black;
 }

@@ -12,7 +12,9 @@ export default function Answer(props) {
       <button
         className="answer--button"
         onClick={() => props.isHeld(props.data.id, props.questionID)}
-        style={styles}>{he.decode(props.value)}
+        style={styles}
+      >
+        {he.decode(props.value)}
       </button>
     </div>
   )

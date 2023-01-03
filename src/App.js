@@ -7,6 +7,8 @@ import Start from "./components/Start"
 export default function App() {
   const [start, setStart] = useState(false)
   const [quizData, setQuizData] = useState([])
+  const [score, setScore] = useState(0)
+  const [submit, setHasSubmit] = useState(false)
 
   useEffect(() => {
     function formatQuizData(quizData) {
@@ -15,7 +17,8 @@ export default function App() {
           id: nanoid(),
           question: data.question,
           correctAnswer: data.correct_answer,
-          answers: shuffleAnswers([...data.incorrect_answers, data.correct_answer])
+          answers: shuffleAnswers([...data.incorrect_answers, data.correct_answer]),
+          score: 0
         }
       })
 
@@ -31,9 +34,47 @@ export default function App() {
       })
   }, [start])
 
+  function submitQuiz() {
+    console.log("Quiz submitted!")
+    console.log(quizData.length)
+    setScore(0)
+    setQuizData(prevQuizState =>
+      prevQuizState.map(item => {
+        let checkedAnswers = item.answers.map(answer => {
+          if (answer.isHeld && item.correctAnswer === answer.value) {
+            setScore(prevScore => prevScore + 1)
+            return {
+              ...answer,
+              isCheckedCorrect: true
+            }
+          } else if (answer.isHeld && item.correctAnswer !== answer.value) {
+            return {
+              ...answer,
+              isCheckedFalse: false
+            }
+          } else if (!answer.isHeld && item.correctAnswer === answer.value) {
+            return {
+              ...answer,
+              isCheckedCorrect: true
+            }
+          } else {
+            return {
+              ...answer,
+              isFaded: true
+            }
+          }
+        })
+        return {
+          ...item,
+          answers: checkedAnswers
+        }
+      })
+    )
+    setHasSubmit(true)
+  }
+
   function isHeld(answerID, questionID) {
-    console.log(answerID, questionID)
-    setQuizData(prevQuizState => 
+    setQuizData(prevQuizState =>
       prevQuizState.map(item => {
         if (item.id === questionID) {
           let newAnswersArray = item.answers.map((answer) => {
@@ -69,7 +110,7 @@ export default function App() {
       return {
         value: item,
         id: nanoid(5),
-        isHeld: false
+        isHeld: false,
       }
     })
     return randomAnswersList
@@ -88,6 +129,9 @@ export default function App() {
           key={nanoid()}
           quizData={quizData}
           isHeld={isHeld}
+          submitQuiz={submitQuiz}
+          hasSubmit={submit}
+          score={score}
         />
       )}
     </main>

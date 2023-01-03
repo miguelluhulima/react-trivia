@@ -18,8 +18,14 @@ export default function Quiz(props) {
 
   return (
     <div className="quiz">
-      {cardElements}
-      <button className="quiz--submit">Submit Answers</button>
+      <div className="quiz--questions">
+        {cardElements}
+      </div>
+      <button
+        className="quiz--submit"
+        onClick={() => props.submitQuiz()}>Submit Answers
+      </button>
+      {props.hasSubmit && <p>Score: {props.score}</p>}
     </div>
   )
 }

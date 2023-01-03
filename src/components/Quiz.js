@@ -21,10 +21,22 @@ export default function Quiz(props) {
       <div className="quiz--questions">
         {cardElements}
       </div>
-      <button
+      {
+        !props.hasSubmit &&
+        <button
+          className="quiz--submit"
+          onClick={() => props.submitQuiz()}>Submit Answers
+        </button>
+      }
+      {
+        props.hasSubmit &&
+        <button
         className="quiz--submit"
-        onClick={() => props.submitQuiz()}>Submit Answers
-      </button>
+        onClick={() => props.handleRestart()}
+        >
+          Restart?
+        </button>
+      }
       {props.hasSubmit && <p>Score: {props.score}</p>}
     </div>
   )

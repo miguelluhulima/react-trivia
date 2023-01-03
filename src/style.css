@@ -52,6 +52,10 @@ main {
     box-shadow: inset 2px 3px 5px black;
 }
 
+.start--footer {
+    margin-top: 20px;
+}
+
 .quiz {
     display: flex;
     flex-direction: column;

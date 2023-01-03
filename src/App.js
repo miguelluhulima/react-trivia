@@ -8,7 +8,7 @@ export default function App() {
   const [start, setStart] = useState(false)
   const [quizData, setQuizData] = useState([])
   const [score, setScore] = useState(0)
-  const [submit, setHasSubmit] = useState(false)
+  const [hasSubmit, setHasSubmit] = useState(false)
 
   useEffect(() => {
     function formatQuizData(quizData) {
@@ -35,8 +35,6 @@ export default function App() {
   }, [start])
 
   function submitQuiz() {
-    console.log("Quiz submitted!")
-    console.log(quizData.length)
     setScore(0)
     setQuizData(prevQuizState =>
       prevQuizState.map(item => {
@@ -116,6 +114,11 @@ export default function App() {
     return randomAnswersList
   }
 
+  function handleRestart() {
+    setStart(false)
+    setHasSubmit(false)
+  }
+
   function startGame() {
     setStart(true)
   }
@@ -130,8 +133,9 @@ export default function App() {
           quizData={quizData}
           isHeld={isHeld}
           submitQuiz={submitQuiz}
-          hasSubmit={submit}
+          hasSubmit={hasSubmit}
           score={score}
+          handleRestart={handleRestart}
         />
       )}
     </main>

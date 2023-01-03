@@ -3,11 +3,6 @@ import React from "react"
 import he from "he"
 
 export default function Answer(props) {
-  console.log(props.data)
-  const styles = {
-    backgroundColor: props.data.isHeld ? "#EF4B4B" : "F4F4F4",
-    // color: props.data.isHeld ? "black" : "white"
-  }
   function buttonStyle(item) {
     let myStyle = {}
 
@@ -22,9 +17,15 @@ export default function Answer(props) {
         backgroundColor: "#EF4B4B"
       }
       return myStyle
+    } else if (item.isFaded) {
+      myStyle = {
+        backgroundColor: "#9D9D9D",
+        color: "#858585"
+      }
+      return myStyle
     } else {
       myStyle = {
-        backgroundColor: props.data.isHeld ? "#EF4B4B" : "F4F4F4"
+        backgroundColor: props.data.isHeld ? "#EF4B4B" : "#343434"
       }
       return myStyle
     }

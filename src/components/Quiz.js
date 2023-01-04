@@ -31,8 +31,8 @@ export default function Quiz(props) {
       {
         props.hasSubmit &&
         <button
-        className="quiz--submit"
-        onClick={() => props.handleRestart()}
+          className="quiz--submit"
+          onClick={() => props.handleRestart()}
         >
           Restart?
         </button>

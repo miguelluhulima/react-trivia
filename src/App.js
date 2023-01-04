@@ -26,7 +26,7 @@ export default function App() {
     }
 
     fetch(
-      "https://opentdb.com/api.php?amount=6&category=9&difficulty=medium&type=multiple"
+      "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple"
     )
       .then(res => res.json())
       .then(data => {
